@@ -36,7 +36,6 @@ export default function CandidateReport() {
         setTimeout(() => setToast(false), 3000);
     };
 
-    // Empty state
     if (candidate === null) {
         return (
             <div className="min-h-screen bg-[#0a0a0f] flex items-center justify-center px-4">
@@ -52,7 +51,7 @@ export default function CandidateReport() {
                         onClick={() => navigate("/scan")}
                         className="px-6 py-3 rounded-xl font-semibold text-sm bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-500 hover:to-blue-500 hover:shadow-lg hover:shadow-purple-500/25 transition-all cursor-pointer"
                     >
-                        ← Go to Scan
+                        Go to Scan
                     </button>
                 </div>
             </div>
@@ -63,15 +62,14 @@ export default function CandidateReport() {
 
     return (
         <div className="min-h-screen bg-[#0a0a0f] text-white relative overflow-hidden">
-            {/* Background gradient orbs */}
             <div className="absolute top-[-15%] left-[-5%] w-[600px] h-[600px] bg-purple-600/15 rounded-full blur-[140px] pointer-events-none" />
             <div className="absolute bottom-[-15%] right-[-5%] w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[140px] pointer-events-none" />
             <div className="absolute top-[50%] left-[50%] w-[400px] h-[400px] bg-cyan-500/8 rounded-full blur-[120px] pointer-events-none" />
 
-            {/* Toast notification */}
             <div
-                className={`fixed top-6 right-6 z-50 transition-all duration-500 ${toast ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"
-                    }`}
+                className={`fixed top-6 right-6 z-50 transition-all duration-500 ${
+                    toast ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"
+                }`}
             >
                 <div className="flex items-center gap-3 px-5 py-3.5 bg-green-500/15 backdrop-blur-xl border border-green-500/30 rounded-xl shadow-2xl">
                     <svg className="w-5 h-5 text-green-400 shrink-0" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
@@ -81,7 +79,6 @@ export default function CandidateReport() {
                 </div>
             </div>
 
-            {/* Header */}
             <header className="relative z-10 flex items-center justify-between px-6 md:px-10 py-5 border-b border-white/[0.06]">
                 <button
                     onClick={() => navigate("/scan")}
@@ -101,38 +98,30 @@ export default function CandidateReport() {
                 <button
                     onClick={handleShortlist}
                     disabled={shortlisted}
-                    className={`px-5 py-2.5 rounded-xl text-sm font-semibold transition-all cursor-pointer disabled:cursor-default ${shortlisted
+                    className={`px-5 py-2.5 rounded-xl text-sm font-semibold transition-all cursor-pointer disabled:cursor-default ${
+                        shortlisted
                             ? "bg-green-500/15 border border-green-500/30 text-green-400"
                             : "bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-500 hover:to-blue-500 hover:shadow-lg hover:shadow-purple-500/25"
-                        }`}
+                    }`}
                 >
-                    {shortlisted ? "✓ Shortlisted" : "⚡ Shortlist Candidate"}
+                    {shortlisted ? "Shortlisted" : "Shortlist Candidate"}
                 </button>
             </header>
 
-            {/* Content */}
             <main className="relative z-10 max-w-6xl mx-auto px-6 md:px-10 py-10 space-y-10">
-                {/* Candidate name */}
                 <div className="text-center">
-                    <h2 className="text-3xl md:text-4xl font-bold">
-                        {candidate.name}
-                    </h2>
+                    <h2 className="text-3xl md:text-4xl font-bold">{candidate.name}</h2>
                     <p className="text-white/40 text-sm mt-1">Candidate Analysis Report</p>
+                    <p className="text-white/30 text-xs mt-2 break-all">{candidate.profileUrl}</p>
                 </div>
 
-                {/* Score Section */}
                 <section className="flex justify-center">
                     <div className="bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] rounded-2xl p-10 shadow-2xl shadow-black/30">
-                        <ScoreCircle
-                            score={candidate.score}
-                            label={candidate.authenticityLevel}
-                        />
+                        <ScoreCircle score={candidate.score} label={candidate.authenticityLevel} />
                     </div>
                 </section>
 
-                {/* Skills Section: Radar + Breakdown */}
                 <section className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    {/* Radar Chart */}
                     <div className="bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] rounded-2xl p-6 shadow-2xl shadow-black/20">
                         <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
                             <svg className="w-5 h-5 text-purple-400" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
@@ -143,7 +132,6 @@ export default function CandidateReport() {
                         <RadarChart skills={candidate.skills} />
                     </div>
 
-                    {/* Skill Breakdown Bars */}
                     <div className="bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] rounded-2xl p-6 shadow-2xl shadow-black/20">
                         <h3 className="text-lg font-semibold text-white mb-6 flex items-center gap-2">
                             <svg className="w-5 h-5 text-cyan-400" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
@@ -175,13 +163,12 @@ export default function CandidateReport() {
                     </div>
                 </section>
 
-                {/* Insights Section */}
                 <section>
                     <h3 className="text-xl font-semibold text-white mb-5 flex items-center gap-2">
                         <svg className="w-5 h-5 text-purple-400" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" />
                         </svg>
-                        AI Insights
+                        Automated Insights
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                         <InsightCard title="Strengths" items={candidate.strengths} variant="success" />
@@ -190,7 +177,6 @@ export default function CandidateReport() {
                     </div>
                 </section>
 
-                {/* Interview Questions */}
                 <section>
                     <h3 className="text-xl font-semibold text-white mb-5 flex items-center gap-2">
                         <svg className="w-5 h-5 text-cyan-400" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
@@ -214,9 +200,8 @@ export default function CandidateReport() {
                 </section>
             </main>
 
-            {/* Footer */}
             <footer className="relative z-10 text-center py-8 border-t border-white/[0.06]">
-                <p className="text-white/20 text-xs">Powered by GitHub API & Gemini AI</p>
+                <p className="text-white/20 text-xs">Powered by URL automation</p>
             </footer>
         </div>
     );

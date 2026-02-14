@@ -153,5 +153,175 @@
       "How do you design retry and timeout strategies for external API calls?",
       "How do you structure logging and monitoring for backend systems?"
     ]
+  },
+  {
+    "id": "b41a8bcd-489e-4232-8c36-c16811546e84",
+    "name": "ParthLonkar (Parth Lonkar) · GitHub",
+    "profileUrl": "https://github.com/ParthLonkar",
+    "score": 15,
+    "authenticityLevel": "Low",
+    "skills": {
+      "frontend": 1,
+      "backend": 2,
+      "dsa": 0,
+      "system": 0,
+      "testing": 0
+    },
+    "strengths": [
+      "backend signal is strong based on detected technical terms.",
+      "frontend appears consistently across analyzed content.",
+      "Profile has enough technical content for evidence-based evaluation."
+    ],
+    "weaknesses": [
+      "system evidence is limited in the analyzed URL content.",
+      "testing indicators are weaker than other technical areas.",
+      "Adding explicit project outcomes and metrics would improve confidence."
+    ],
+    "risks": [
+      "Minimal testing signals detected."
+    ],
+    "questions": [
+      "How would you design an API that remains backward compatible over time?",
+      "How do you handle retries, timeouts, and idempotency in external API calls?",
+      "How do you structure a large frontend codebase to stay maintainable?",
+      "What tradeoffs do you consider when optimizing rendering performance?",
+      "Walk through a recent technical decision and the alternatives you evaluated."
+    ]
+  },
+  {
+    "id": "be694493-bb21-4e90-b539-2630527ab840",
+    "name": "PrafulK99 (Praful Kharpuriye) · GitHub",
+    "profileUrl": "https://github.com/PrafulK99",
+    "score": 13,
+    "authenticityLevel": "Low",
+    "skills": {
+      "frontend": 2,
+      "backend": 0,
+      "dsa": 0,
+      "system": 0,
+      "testing": 0
+    },
+    "strengths": [
+      "frontend signal is strong based on detected technical terms.",
+      "backend appears consistently across analyzed content.",
+      "Profile has enough technical content for evidence-based evaluation."
+    ],
+    "weaknesses": [
+      "system evidence is limited in the analyzed URL content.",
+      "testing indicators are weaker than other technical areas.",
+      "Adding explicit project outcomes and metrics would improve confidence."
+    ],
+    "risks": [
+      "Minimal testing signals detected."
+    ],
+    "questions": [
+      "How do you structure a large frontend codebase to stay maintainable?",
+      "What tradeoffs do you consider when optimizing rendering performance?",
+      "How would you design an API that remains backward compatible over time?",
+      "How do you handle retries, timeouts, and idempotency in external API calls?",
+      "Walk through a recent technical decision and the alternatives you evaluated."
+    ]
+  },
+  {
+    "id": "bd5ea753-93a9-46fa-8ca0-79328298be07",
+    "name": "Kshitij537 (Kshitij Deshmukh) · GitHub",
+    "profileUrl": "https://github.com/Kshitij537",
+    "score": 16,
+    "authenticityLevel": "Low",
+    "skills": {
+      "frontend": 2,
+      "backend": 2,
+      "dsa": 0,
+      "system": 0,
+      "testing": 0
+    },
+    "strengths": [
+      "frontend signal is strong based on detected technical terms.",
+      "backend appears consistently across analyzed content.",
+      "Profile has enough technical content for evidence-based evaluation."
+    ],
+    "weaknesses": [
+      "system evidence is limited in the analyzed URL content.",
+      "testing indicators are weaker than other technical areas.",
+      "Adding explicit project outcomes and metrics would improve confidence."
+    ],
+    "risks": [
+      "Minimal testing signals detected."
+    ],
+    "questions": [
+      "How do you structure a large frontend codebase to stay maintainable?",
+      "What tradeoffs do you consider when optimizing rendering performance?",
+      "How would you design an API that remains backward compatible over time?",
+      "How do you handle retries, timeouts, and idempotency in external API calls?",
+      "Walk through a recent technical decision and the alternatives you evaluated."
+    ]
+  },
+  {
+    "id": "a7ea8a5a-79aa-48cd-a024-fee1bb18ad16",
+    "name": "atharva1304 (Atharva Kamde) · GitHub",
+    "profileUrl": "https://github.com/atharva1304",
+    "score": 12,
+    "authenticityLevel": "Low",
+    "skills": {
+      "frontend": 0,
+      "backend": 1,
+      "dsa": 0,
+      "system": 0,
+      "testing": 0
+    },
+    "strengths": [
+      "backend signal is strong based on detected technical terms.",
+      "frontend appears consistently across analyzed content.",
+      "Profile has enough technical content for evidence-based evaluation."
+    ],
+    "weaknesses": [
+      "system evidence is limited in the analyzed URL content.",
+      "testing indicators are weaker than other technical areas.",
+      "Adding explicit project outcomes and metrics would improve confidence."
+    ],
+    "risks": [
+      "Minimal testing signals detected."
+    ],
+    "questions": [
+      "How would you design an API that remains backward compatible over time?",
+      "How do you handle retries, timeouts, and idempotency in external API calls?",
+      "How do you structure a large frontend codebase to stay maintainable?",
+      "What tradeoffs do you consider when optimizing rendering performance?",
+      "Walk through a recent technical decision and the alternatives you evaluated."
+    ]
+  },
+  {
+    "id": "ae2a6951-cc8d-41d5-9e35-6d8b8c999e22",
+    "name": "ParthLonkar (Parth Lonkar) · GitHub",
+    "profileUrl": "https://github.com/ParthLonkar",
+    "score": 15,
+    "authenticityLevel": "Low",
+    "skills": {
+      "frontend": 1,
+      "backend": 2,
+      "dsa": 0,
+      "system": 0,
+      "testing": 0
+    },
+    "strengths": [
+      "backend signal is strong based on detected technical terms.",
+      "frontend appears consistently across analyzed content.",
+      "Profile has enough technical content for evidence-based evaluation."
+    ],
+    "weaknesses": [
+      "system evidence is limited in the analyzed URL content.",
+      "testing indicators are weaker than other technical areas.",
+      "Adding explicit project outcomes and metrics would improve confidence."
+    ],
+    "risks": [
+      "Minimal testing signals detected."
+    ],
+    "questions": [
+      "How would you design an API that remains backward compatible over time?",
+      "How do you handle retries, timeouts, and idempotency in external API calls?",
+      "How do you structure a large frontend codebase to stay maintainable?",
+      "What tradeoffs do you consider when optimizing rendering performance?",
+      "Walk through a recent technical decision and the alternatives you evaluated."
+    ]
   }
 ]

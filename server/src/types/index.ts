@@ -30,7 +30,7 @@ export interface AIInsights {
 export interface CandidateReport {
     id: string;
     name: string;
-    github: string;
+    profileUrl: string;
     score: number;
     authenticityLevel: "High" | "Medium" | "Low";
     skills: Skills;

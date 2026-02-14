@@ -4,7 +4,7 @@ export function getMockCandidate(): Candidate {
     return {
         id: "demo-" + Date.now(),
         name: "demo-user",
-        github: "https://github.com/demo-user",
+        profileUrl: "https://portfolio.example/demo-user",
         score: 62,
         authenticityLevel: "Medium",
         skills: {
