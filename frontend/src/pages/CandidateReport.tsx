@@ -271,7 +271,15 @@ export default function CandidateReport() {
                 />
 
                 {/* 10. Assessment Generator */}
-                <AssessmentSection />
+                <AssessmentSection
+                    candidateData={{
+                        name: candidate.name,
+                        skills: Object.keys(candidate.skills || {}),
+                        score: candidate.score,
+                        strengths: candidate.strengths,
+                        weaknesses: candidate.weaknesses,
+                    }}
+                />
 
                 {/* 11. Recruiter Actions */}
                 <RecruiterActions />
