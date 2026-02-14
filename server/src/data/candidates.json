@@ -1,1 +1,107 @@
-[]
+[
+  {
+    "id": "f124de9e-8836-45da-8515-1deb7f8caf5f",
+    "name": "torvalds",
+    "github": "https://github.com/torvalds",
+    "score": 100,
+    "authenticityLevel": "High",
+    "skills": {
+      "frontend": 0,
+      "backend": 0,
+      "dsa": 5,
+      "system": 3,
+      "testing": 0
+    },
+    "strengths": [
+      "Demonstrates consistent GitHub activity",
+      "Works with multiple programming languages",
+      "Has public projects showcasing practical skills"
+    ],
+    "weaknesses": [
+      "Limited evidence of testing practices",
+      "Few collaborative or open-source contributions",
+      "Project documentation could be improved"
+    ],
+    "risks": [
+      "Skill depth hard to verify from repos alone",
+      "May rely on tutorials without original work"
+    ],
+    "questions": [
+      "Walk me through the architecture of your most complex project.",
+      "How do you approach writing tests for your code?",
+      "Describe a challenging bug you fixed and your debugging process.",
+      "What design patterns have you used and why?",
+      "How do you stay current with new technologies?"
+    ]
+  },
+  {
+    "id": "f637839e-34de-4179-a90d-2669657052a7",
+    "name": "torvalds",
+    "github": "https://github.com/torvalds",
+    "score": 100,
+    "authenticityLevel": "High",
+    "skills": {
+      "frontend": 0,
+      "backend": 0,
+      "dsa": 5,
+      "system": 3,
+      "testing": 0
+    },
+    "strengths": [
+      "Demonstrates consistent GitHub activity",
+      "Works with multiple programming languages",
+      "Has public projects showcasing practical skills"
+    ],
+    "weaknesses": [
+      "Limited evidence of testing practices",
+      "Few collaborative or open-source contributions",
+      "Project documentation could be improved"
+    ],
+    "risks": [
+      "Skill depth hard to verify from repos alone",
+      "May rely on tutorials without original work"
+    ],
+    "questions": [
+      "Walk me through the architecture of your most complex project.",
+      "How do you approach writing tests for your code?",
+      "Describe a challenging bug you fixed and your debugging process.",
+      "What design patterns have you used and why?",
+      "How do you stay current with new technologies?"
+    ]
+  },
+  {
+    "id": "d2de924c-9df0-4432-8a6f-20611d9bb700",
+    "name": "prafullKas",
+    "github": "https://github.com/prafullKas",
+    "score": 65,
+    "authenticityLevel": "Medium",
+    "skills": {
+      "frontend": 3,
+      "backend": 1,
+      "dsa": 3,
+      "system": 0,
+      "testing": 8
+    },
+    "strengths": [
+      "Demonstrates consistent GitHub activity",
+      "Works with multiple programming languages",
+      "Has public projects showcasing practical skills"
+    ],
+    "weaknesses": [
+      "Limited evidence of testing practices",
+      "Few collaborative or open-source contributions",
+      "Project documentation could be improved"
+    ],
+    "risks": [
+      "Skill depth hard to verify from repos alone",
+      "May rely on tutorials without original work"
+    ],
+    "questions": [
+      "Walk me through the architecture of your most complex project.",
+      "How do you approach writing tests for your code?",
+      "Describe a challenging bug you fixed and your debugging process.",
+      "What design patterns have you used and why?",
+      "How do you stay current with new technologies?"
+    ]
+  }
+]
