@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Input } from '../components/ui/Input';
 import { Button } from '../components/ui/Button';
+import { supabase } from '../lib/supabase';
+
 
 export const RecruiterLogin = () => {
   const [email, setEmail] = useState('');
@@ -8,6 +10,24 @@ export const RecruiterLogin = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
+  const handleGoogleLogin = async () => {
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: 'http://localhost:5173/auth/callback',
+        },
+      });
+  
+      if (error) {
+        console.error(error);
+        alert(error.message);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  
 
   const validateForm = () => {
     const newErrors: { email?: string; password?: string } = {};
@@ -157,8 +177,9 @@ export const RecruiterLogin = () => {
             {/* Social Login Buttons */}
             <div className="grid grid-cols-2 gap-3">
               <button
-                type="button"
-                className="flex items-center justify-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+  type="button"
+  onClick={handleGoogleLogin}
+  className="flex items-center justify-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
               >
                 <svg className="w-5 h-5" viewBox="0 0 24 24">
                   <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
