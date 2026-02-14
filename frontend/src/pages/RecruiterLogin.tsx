@@ -1,12 +1,7 @@
 import { useState } from 'react';
 import { Input } from '../components/ui/Input';
 import { Button } from '../components/ui/Button';
-<<<<<<< HEAD
 import { API } from '../lib/api';
-=======
-import { supabase } from '../lib/supabase';
-
->>>>>>> 7e582c3e602485bc168aeb4ed9d8d901a8e9ee95
 
 export const RecruiterLogin = () => {
   const [email, setEmail] = useState('');
@@ -16,19 +11,26 @@ export const RecruiterLogin = () => {
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
   const handleGoogleLogin = async () => {
     try {
+      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+      const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+      if (!supabaseUrl || !supabaseAnonKey) {
+        setErrors({ email: 'Google login requires VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.' });
+        return;
+      }
+
+      const { createClient } = await import('@supabase/supabase-js');
+      const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
-        options: {
-          redirectTo: 'http://localhost:5173/auth/callback',
-        },
+        options: { redirectTo: `${window.location.origin}/auth/callback` },
       });
-  
+
       if (error) {
-        console.error(error);
-        alert(error.message);
+        setErrors({ email: error.message });
       }
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
+      setErrors({ email: 'Install @supabase/supabase-js to enable Google login.' });
     }
   };
   
@@ -72,7 +74,8 @@ export const RecruiterLogin = () => {
         localStorage.setItem('recruiterToken', data.token);
         window.location.href = '/recruiter/dashboard';
       } else {
-        setErrors({ email: 'Invalid email or password' });
+        const payload = await response.json().catch(() => null);
+        setErrors({ email: payload?.error || 'Invalid email or password' });
       }
     } catch (error) {
       console.error('Login failed:', error);

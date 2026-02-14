@@ -10,6 +10,31 @@ export const CandidateLogin = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
 
+  const handleGoogleLogin = async () => {
+    try {
+      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+      const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+      if (!supabaseUrl || !supabaseAnonKey) {
+        setErrors({ email: 'Google login requires VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.' });
+        return;
+      }
+
+      const { createClient } = await import('@supabase/supabase-js');
+      const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: { redirectTo: `${window.location.origin}/auth/callback` },
+      });
+
+      if (error) {
+        setErrors({ email: error.message });
+      }
+    } catch (error) {
+      setErrors({ email: 'Install @supabase/supabase-js to enable Google login.' });
+    }
+  };
+
   const validateForm = () => {
     const newErrors: { email?: string; password?: string } = {};
     
@@ -48,7 +73,8 @@ export const CandidateLogin = () => {
         localStorage.setItem('candidateToken', data.token);
         window.location.href = '/candidate/dashboard';
       } else {
-        setErrors({ email: 'Invalid email or password' });
+        const payload = await response.json().catch(() => null);
+        setErrors({ email: payload?.error || 'Invalid email or password' });
       }
     } catch (error) {
       console.error('Login failed:', error);
@@ -212,6 +238,7 @@ export const CandidateLogin = () => {
             <div className="grid grid-cols-3 gap-3">
               <button
                 type="button"
+                onClick={handleGoogleLogin}
                 className="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
               >
                 <svg className="w-5 h-5" viewBox="0 0 24 24">
