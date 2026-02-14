@@ -105,38 +105,53 @@
     ]
   },
   {
-    "id": "ecc69ccf-e012-4aee-bd32-d37a6184035e",
-    "name": "PrafulK99",
-    "github": "https://github.com/PrafulK99/",
-    "score": 93,
-    "authenticityLevel": "High",
+    "githubUsername": "octocat",
+    "authenticityScore": 52,
     "skills": {
-      "frontend": 4,
-      "backend": 1,
-      "dsa": 3,
-      "system": 0,
-      "testing": 8
+      "Python": 96,
+      "DSA": 77,
+      "System Design": 10,
+      "Collaboration": 61
     },
     "strengths": [
-      "Demonstrates consistent GitHub activity",
-      "Works with multiple programming languages",
-      "Has public projects showcasing practical skills"
+      "Consistent commits",
+      "Strong backend focus"
     ],
     "weaknesses": [
-      "Limited evidence of testing practices",
-      "Few collaborative or open-source contributions",
-      "Project documentation could be improved"
+      "Limited documentation"
     ],
-    "risks": [
-      "Skill depth hard to verify from repos alone",
-      "May rely on tutorials without original work"
+    "riskFlags": [],
+    "interviewQuestions": [
+      "How do you design a scalable REST API for high traffic?",
+      "How would you optimize a slow SQL query in production?",
+      "How do you handle authentication and authorization in Node.js services?",
+      "How do you design retry and timeout strategies for external API calls?",
+      "How do you structure logging and monitoring for backend systems?"
+    ]
+  },
+  {
+    "githubUsername": "octocat",
+    "authenticityScore": 52,
+    "skills": {
+      "Python": 94,
+      "DSA": 95,
+      "System Design": 91,
+      "Collaboration": 61
+    },
+    "strengths": [
+      "Consistent commits",
+      "Strong backend focus"
     ],
-    "questions": [
-      "Walk me through the architecture of your most complex project.",
-      "How do you approach writing tests for your code?",
-      "Describe a challenging bug you fixed and your debugging process.",
-      "What design patterns have you used and why?",
-      "How do you stay current with new technologies?"
+    "weaknesses": [
+      "Limited documentation"
+    ],
+    "riskFlags": [],
+    "interviewQuestions": [
+      "How do you design a scalable REST API for high traffic?",
+      "How would you optimize a slow SQL query in production?",
+      "How do you handle authentication and authorization in Node.js services?",
+      "How do you design retry and timeout strategies for external API calls?",
+      "How do you structure logging and monitoring for backend systems?"
     ]
   }
 ]
