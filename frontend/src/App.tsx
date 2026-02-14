@@ -7,6 +7,7 @@ import CandidateReport from "./pages/CandidateReport";
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 import CandidateHome from "./pages/CandidateHome";
+import CandidateAnalysis from "./pages/Candidateanalysis"; // ADD THIS IMPORT
 import CompareCandidates from "./pages/CompareCandidates";
 import AuthGuard from "./components/AuthGuard";
 import { getAuthSession } from "./lib/session";
@@ -215,6 +216,15 @@ export default function App() {
           element={
             <AuthGuard allowedRoles={["candidate"]}>
               <CandidateHome />
+            </AuthGuard>
+          }
+        />
+        {/* ADD THIS NEW ROUTE FOR ANALYSIS */}
+        <Route
+          path="/analysis"
+          element={
+            <AuthGuard allowedRoles={["candidate"]}>
+              <CandidateAnalysis />
             </AuthGuard>
           }
         />
