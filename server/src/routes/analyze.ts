@@ -213,4 +213,9 @@ router.get("/candidate/:id", (req: Request, res: Response): void => {
     res.json(candidate);
 });
 
+router.get("/candidates", (_req: Request, res: Response): void => {
+    const candidates = readCandidates().slice().reverse();
+    res.json(candidates);
+});
+
 export default router;
