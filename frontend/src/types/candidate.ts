@@ -9,7 +9,7 @@ export interface Skills {
 export interface Candidate {
     id: string;
     name: string;
-    github: string;
+    profileUrl: string;
     score: number;
     authenticityLevel: "High" | "Medium" | "Low";
     skills: Skills;

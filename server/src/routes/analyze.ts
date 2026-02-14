@@ -1,37 +1,17 @@
 import { Router, Request, Response } from "express";
 import fs from "fs";
 import path from "path";
-import { fetchGithubData } from "../services/githubService";
-import { calculateAuthenticity } from "../services/scoringEngine";
-import { detectRisks } from "../services/riskAnalyzer";
-import { generateInterviewQuestions } from "../services/interviewGenerator";
+import { generateId } from "../utils/id";
+import { analyzeUrl } from "../services/urlAnalyzerService";
+import type { CandidateReport } from "../types";
 
 const router = Router();
 const DB_PATH = path.join(__dirname, "..", "data", "candidates.json");
 
 type AnalyzeRequestBody = {
-    githubUsername?: string;
-    targetRole?: string;
+    url?: string;
+    githubUrl?: string;
 };
-
-type CandidateReport = {
-    githubUsername: string;
-    authenticityScore: number;
-    skills: {
-        Python: number;
-        DSA: number;
-        "System Design": number;
-        Collaboration: number;
-    };
-    strengths: string[];
-    weaknesses: string[];
-    riskFlags: string[];
-    interviewQuestions: string[];
-};
-
-function randomScore(): number {
-    return Math.floor(Math.random() * 101);
-}
 
 function readCandidates(): CandidateReport[] {
     try {
@@ -48,36 +28,27 @@ function saveCandidates(candidates: CandidateReport[]): void {
 
 router.post("/analyze", async (req: Request, res: Response): Promise<void> => {
     try {
-        const { githubUsername, targetRole } = req.body as AnalyzeRequestBody;
+        const { url, githubUrl } = req.body as AnalyzeRequestBody;
+        const analysisUrl = url ?? githubUrl;
 
-        if (!githubUsername || typeof githubUsername !== "string") {
-            res.status(400).json({ error: "githubUsername is required and must be a string" });
+        if (!analysisUrl || typeof analysisUrl !== "string") {
+            res.status(400).json({ error: "url is required and must be a string" });
             return;
         }
 
-        if (!targetRole || typeof targetRole !== "string") {
-            res.status(400).json({ error: "targetRole is required and must be a string" });
-            return;
-        }
-
-        const githubData = await fetchGithubData(githubUsername);
-        const authenticityScore = calculateAuthenticity(githubData);
-        const riskFlags = detectRisks(githubData);
-        const interviewQuestions = generateInterviewQuestions(targetRole);
+        const automated = await analyzeUrl(analysisUrl);
 
         const report: CandidateReport = {
-            githubUsername,
-            authenticityScore,
-            skills: {
-                Python: randomScore(),
-                DSA: randomScore(),
-                "System Design": randomScore(),
-                Collaboration: githubData.collaborationScore,
-            },
-            strengths: ["Consistent commits", "Strong backend focus"],
-            weaknesses: ["Limited documentation"],
-            riskFlags,
-            interviewQuestions,
+            id: generateId(),
+            name: automated.name,
+            profileUrl: automated.profileUrl,
+            score: automated.score,
+            authenticityLevel: automated.authenticityLevel,
+            skills: automated.skills,
+            strengths: automated.strengths,
+            weaknesses: automated.weaknesses,
+            risks: automated.risks,
+            questions: automated.questions,
         };
 
         const candidates = readCandidates();
