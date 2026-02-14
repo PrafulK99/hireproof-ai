@@ -103,5 +103,40 @@
       "What design patterns have you used and why?",
       "How do you stay current with new technologies?"
     ]
+  },
+  {
+    "id": "ecc69ccf-e012-4aee-bd32-d37a6184035e",
+    "name": "PrafulK99",
+    "github": "https://github.com/PrafulK99/",
+    "score": 93,
+    "authenticityLevel": "High",
+    "skills": {
+      "frontend": 4,
+      "backend": 1,
+      "dsa": 3,
+      "system": 0,
+      "testing": 8
+    },
+    "strengths": [
+      "Demonstrates consistent GitHub activity",
+      "Works with multiple programming languages",
+      "Has public projects showcasing practical skills"
+    ],
+    "weaknesses": [
+      "Limited evidence of testing practices",
+      "Few collaborative or open-source contributions",
+      "Project documentation could be improved"
+    ],
+    "risks": [
+      "Skill depth hard to verify from repos alone",
+      "May rely on tutorials without original work"
+    ],
+    "questions": [
+      "Walk me through the architecture of your most complex project.",
+      "How do you approach writing tests for your code?",
+      "Describe a challenging bug you fixed and your debugging process.",
+      "What design patterns have you used and why?",
+      "How do you stay current with new technologies?"
+    ]
   }
 ]
