@@ -184,6 +184,71 @@ export default function CandidateReport() {
                 {/* 6. AI Risk Card */}
                 <RiskCard score={candidate.score} aiRisk={candidate.aiRisk} />
 
+                {/* 6.1 Analysis Table */}
+                <section className="rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-xl overflow-hidden">
+                    <div className="px-6 py-4 border-b border-white/[0.08]">
+                        <h3 className="text-lg font-semibold text-white">Analysis Table</h3>
+                    </div>
+                    <div className="overflow-x-auto">
+                        <table className="w-full min-w-[760px] text-sm">
+                            <thead className="bg-white/[0.03] text-white/60">
+                                <tr>
+                                    <th className="text-left px-4 py-3 font-medium">Metric</th>
+                                    <th className="text-left px-4 py-3 font-medium">Value</th>
+                                    <th className="text-left px-4 py-3 font-medium">Source</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr className="border-t border-white/[0.06]">
+                                    <td className="px-4 py-3 text-white/80">Candidate</td>
+                                    <td className="px-4 py-3 text-white">{candidate.name}</td>
+                                    <td className="px-4 py-3 text-white/50">Profile</td>
+                                </tr>
+                                <tr className="border-t border-white/[0.06]">
+                                    <td className="px-4 py-3 text-white/80">Authenticity Score</td>
+                                    <td className="px-4 py-3 text-white">{candidate.score}</td>
+                                    <td className="px-4 py-3 text-white/50">Computed</td>
+                                </tr>
+                                <tr className="border-t border-white/[0.06]">
+                                    <td className="px-4 py-3 text-white/80">Authenticity Level</td>
+                                    <td className="px-4 py-3 text-white">{candidate.authenticityLevel}</td>
+                                    <td className="px-4 py-3 text-white/50">Computed</td>
+                                </tr>
+                                <tr className="border-t border-white/[0.06]">
+                                    <td className="px-4 py-3 text-white/80">GitHub Username</td>
+                                    <td className="px-4 py-3 text-white">{candidate.githubMonitoring?.username ?? "-"}</td>
+                                    <td className="px-4 py-3 text-white/50">GitHub</td>
+                                </tr>
+                                <tr className="border-t border-white/[0.06]">
+                                    <td className="px-4 py-3 text-white/80">Repos</td>
+                                    <td className="px-4 py-3 text-white">{candidate.githubMonitoring?.repoCount ?? 0}</td>
+                                    <td className="px-4 py-3 text-white/50">GitHub API</td>
+                                </tr>
+                                <tr className="border-t border-white/[0.06]">
+                                    <td className="px-4 py-3 text-white/80">Commits (30d)</td>
+                                    <td className="px-4 py-3 text-white">{candidate.githubMonitoring?.totalCommits ?? 0}</td>
+                                    <td className="px-4 py-3 text-white/50">GitHub Events API</td>
+                                </tr>
+                                <tr className="border-t border-white/[0.06]">
+                                    <td className="px-4 py-3 text-white/80">Consistency</td>
+                                    <td className="px-4 py-3 text-white">{candidate.githubMonitoring?.contributionConsistency ?? 0}%</td>
+                                    <td className="px-4 py-3 text-white/50">Computed</td>
+                                </tr>
+                                <tr className="border-t border-white/[0.06]">
+                                    <td className="px-4 py-3 text-white/80">Complexity</td>
+                                    <td className="px-4 py-3 text-white">{candidate.githubMonitoring?.complexityScore ?? 0}%</td>
+                                    <td className="px-4 py-3 text-white/50">Computed</td>
+                                </tr>
+                                <tr className="border-t border-white/[0.06]">
+                                    <td className="px-4 py-3 text-white/80">Collaboration</td>
+                                    <td className="px-4 py-3 text-white">{candidate.githubMonitoring?.collaborationScore ?? 0}%</td>
+                                    <td className="px-4 py-3 text-white/50">Computed</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
                 {/* 7. Strengths & Weaknesses */}
                 <StrengthWeakness
                     strengths={candidate.strengths}

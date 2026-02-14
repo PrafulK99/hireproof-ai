@@ -1,47 +1,49 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/layout/Sidebar";
-import CandidateCard from "../components/ui/CandidateCard";
-import type { Candidate } from "../types/candidate"; // Ensure this matches your project structure
-import { getMockCandidate } from "../lib/mockData"; // Mock data util
+import type { Candidate } from "../types/candidate";
 import { getAuthSession } from "../lib/session";
+import { API } from "../lib/api";
 
 export default function Dashboard() {
     const navigate = useNavigate();
     const [candidates, setCandidates] = useState<Candidate[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
     const session = getAuthSession();
     const isRecruiter = session?.role !== "candidate";
 
     useEffect(() => {
-        // Basic loading from local storage, fallback to array with one mock for demo
-        try {
-            const stored = localStorage.getItem("candidates");
-            if (stored) {
-                setCandidates(JSON.parse(stored));
-            } else {
-                // Fallback: Create a list of mock candidates
-                const mock1 = getMockCandidate();
-                const mock2 = {
-                    ...mock1,
-                    id: "mock-2",
-                    name: "Sarah Connor",
-                    score: 92,
-                    authenticityLevel: "High" as const
-                };
-                const mock3 = {
-                    ...mock1,
-                    id: "mock-3",
-                    name: "John Doe",
-                    score: 45,
-                    authenticityLevel: "Low" as const
-                };
+        let cancelled = false;
 
-                // Use these mocks if nothing in localStorage
-                setCandidates([mock1, mock2, mock3]);
+        async function loadCandidates() {
+            setLoading(true);
+            setError(null);
+            try {
+                const res = await fetch(`${API}/api/candidates`);
+                if (!res.ok) {
+                    throw new Error(`Failed to load candidates (${res.status})`);
+                }
+                const data = (await res.json()) as Candidate[];
+                if (!cancelled) {
+                    setCandidates(Array.isArray(data) ? data : []);
+                }
+            } catch (err) {
+                if (!cancelled) {
+                    setError(err instanceof Error ? err.message : "Failed to load candidates");
+                    setCandidates([]);
+                }
+            } finally {
+                if (!cancelled) {
+                    setLoading(false);
+                }
             }
-        } catch {
-            setCandidates([]);
         }
+
+        loadCandidates();
+        return () => {
+            cancelled = true;
+        };
     }, []);
 
     return (
@@ -87,7 +89,15 @@ export default function Dashboard() {
                     </div>
 
                     {/* Content */}
-                    {candidates.length === 0 ? (
+                    {loading ? (
+                        <div className="min-h-[40vh] flex items-center justify-center border border-white/[0.1] rounded-2xl bg-white/[0.02]">
+                            <p className="text-white/60 text-sm">Loading candidates...</p>
+                        </div>
+                    ) : error ? (
+                        <div className="min-h-[40vh] flex items-center justify-center border border-red-500/30 rounded-2xl bg-red-500/5">
+                            <p className="text-red-300 text-sm">{error}</p>
+                        </div>
+                    ) : candidates.length === 0 ? (
                         <div className="min-h-[50vh] flex flex-col items-center justify-center border border-dashed border-white/[0.1] rounded-3xl bg-white/[0.02]">
                             <div className="w-16 h-16 rounded-full bg-white/[0.05] flex items-center justify-center mb-6">
                                 <svg className="w-8 h-8 text-white/30" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
@@ -108,10 +118,42 @@ export default function Dashboard() {
                             ) : null}
                         </div>
                     ) : (
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-10">
-                            {candidates.map((candidate) => (
-                                <CandidateCard key={candidate.id} candidate={candidate} />
-                            ))}
+                        <div className="rounded-2xl border border-white/[0.1] bg-white/[0.02] overflow-hidden pb-2">
+                            <div className="overflow-x-auto">
+                                <table className="w-full min-w-[920px] text-sm">
+                                    <thead className="bg-white/[0.03] text-white/60">
+                                        <tr>
+                                            <th className="text-left px-4 py-3 font-medium">Name</th>
+                                            <th className="text-left px-4 py-3 font-medium">GitHub</th>
+                                            <th className="text-left px-4 py-3 font-medium">Repos</th>
+                                            <th className="text-left px-4 py-3 font-medium">Commits (30d)</th>
+                                            <th className="text-left px-4 py-3 font-medium">Score</th>
+                                            <th className="text-left px-4 py-3 font-medium">Level</th>
+                                            <th className="text-left px-4 py-3 font-medium">View Report</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {candidates.map((candidate) => (
+                                            <tr key={candidate.id} className="border-t border-white/[0.06] hover:bg-white/[0.03]">
+                                                <td className="px-4 py-3 text-white">{candidate.name}</td>
+                                                <td className="px-4 py-3 text-white/80">{candidate.githubMonitoring?.username ?? "-"}</td>
+                                                <td className="px-4 py-3 text-white/80">{candidate.githubMonitoring?.repoCount ?? 0}</td>
+                                                <td className="px-4 py-3 text-white/80">{candidate.githubMonitoring?.totalCommits ?? 0}</td>
+                                                <td className="px-4 py-3 text-white">{candidate.score}</td>
+                                                <td className="px-4 py-3 text-white/80">{candidate.authenticityLevel}</td>
+                                                <td className="px-4 py-3">
+                                                    <button
+                                                        onClick={() => navigate(`/candidate/${candidate.id}`)}
+                                                        className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/10 text-white hover:bg-white/20 transition-colors cursor-pointer"
+                                                    >
+                                                        View Report
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     )}
                 </div>
