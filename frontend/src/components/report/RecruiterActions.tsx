@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function RecruiterActions() {
+    const navigate = useNavigate();
+    const { id } = useParams<{ id: string }>();
     const [shortlisted, setShortlisted] = useState(false);
     const [toast, setToast] = useState("");
 
@@ -41,15 +44,15 @@ export default function RecruiterActions() {
                         }}
                         disabled={shortlisted}
                         className={`px-6 py-3 rounded-xl text-sm font-semibold transition-all cursor-pointer disabled:cursor-default ${shortlisted
-                                ? "bg-emerald-500/15 border border-emerald-500/30 text-emerald-400"
-                                : "bg-gradient-to-r from-emerald-600 to-green-600 text-white hover:from-emerald-500 hover:to-green-500 hover:shadow-lg hover:shadow-emerald-500/25"
+                            ? "bg-emerald-500/15 border border-emerald-500/30 text-emerald-400"
+                            : "bg-gradient-to-r from-emerald-600 to-green-600 text-white hover:from-emerald-500 hover:to-green-500 hover:shadow-lg hover:shadow-emerald-500/25"
                             }`}
                     >
                         {shortlisted ? "✓ Shortlisted" : "⭐ Shortlist Candidate"}
                     </button>
 
                     <button
-                        onClick={() => showToast("Compare feature coming soon!")}
+                        onClick={() => navigate("/compare", { state: { candidateId: id } })}
                         className="px-6 py-3 rounded-xl text-sm font-semibold border border-white/[0.1] text-white/70 hover:bg-white/[0.05] hover:text-white transition-all cursor-pointer"
                     >
                         ⚖️ Compare
