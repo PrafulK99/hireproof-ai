@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import type { Candidate } from "../types/candidate";
 import { getMockCandidate } from "../lib/mockData";
 import CandidateSelector from "../components/compare/CandidateSelector";
@@ -8,8 +8,9 @@ import ComparisonAIRecommendation from "../components/compare/ComparisonAIRecomm
 
 export default function CompareCandidates() {
     const navigate = useNavigate();
+    const location = useLocation();
     const [candidates, setCandidates] = useState<Candidate[]>([]);
-    const [selectedA, setSelectedA] = useState<string | null>(null);
+    const [selectedA, setSelectedA] = useState<string | null>(location.state?.candidateId || null);
     const [selectedB, setSelectedB] = useState<string | null>(null);
 
     useEffect(() => {
